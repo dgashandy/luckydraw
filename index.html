@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Draw</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="plugins/xlsx.full.min.js"></script>
+    <script src="plugins/anime.min.js"></script>
+</head>
+<body>
+    <header>
+        <img src="assets/logopci2.png" alt="Logo">
+        <div class="title">Malam Keakraban PT. PCI</div>
+    </header>
+    <div class="title-container">
+        <h1>LUCKY DRAW</h1>
+    </div>
+    <div class="content-container">
+        <div class="filter-container">
+            <div class="button-container">
+                <div class="btn-draw">
+                    <button class="btn" onclick="startDraw()">Start Single Draw</button>
+                    <button class="btn" onclick="drawAllForPrize()">Draw All for Prize</button>
+                </div>
+                <div class="btn-prize">
+                    <button class="btn" onclick="populateFirstPrizes()">First Concelations Prizes</button>
+                    <button class="btn" onclick="populateSecondPrizes()">Second Concelations Prizes</button>
+                    <button class="btn" onclick="populatePrimaryPrizes()">Primary Prizes</button>
+                </div>
+                <div class="btn-export-import">
+                    <button class="btn" onclick="exportToExcel()">Export to Excel</button>
+                    <input type="file" id="fileInput" accept=".xlsx" style="display:none;" onchange="importExcel(event)">
+                    <button class="btn" onclick="document.getElementById('fileInput').click()">Import Participants</button>
+                </div>
+            </div>
+            <div class="form-container">
+                <h3 style="margin-bottom: 10px;">Manually Remove Prize</h3>
+                <form id="removePrizeForm" class="form-wrapper">
+                    <label for="prizeDropdown">Prize:</label>
+                    <select id="prizeDropdown">
+                        <option value="" disabled selected>Select a prize</option>
+                    </select>
+                    <label for="prizeQuantity">Quantity:</label>
+                    <input type="number" id="prizeQuantity" min="1" required>
+                    <div class="remove-btn">
+                        <button type="button" class="btn" onclick="removePrize()">Remove Prize</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="primary-container">
+            <h2>Winner</h2>
+            <div id="winner">No draw yet</div>
+        </div>
+        <div class="result-container">
+            <div class="prize-container">
+                <h2>Prizes</h2>
+                <ul id="prizes"></ul>
+            </div>
+            <div class="winnerlist-container">
+                <h2>Winners List</h2>
+                <ul id="winners"></ul>
+            </div>
+            <div class="blacklist-container">
+                <h2>Blacklist</h2>
+                <ul id="blacklist"></ul>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
